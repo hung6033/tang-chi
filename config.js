@@ -6,7 +6,7 @@ const CONFIG = {
     Em nhớ chị nhiều`,
     btnIntro: '...',
     title: 'Chị có còn ghét em không?',
-    desc: 'Quay lại làm bạn với em nha..?',
+    desc: 'Quay lại làm bạn với em nha..? ',
     btnYes: 'Okay :>',
     btnNo: 'Không :<',
     question:'Chị sẽ không ghét em nữa chứ :<',
@@ -14,6 +14,6 @@ const CONFIG = {
     reply: 'Chị không đi đâu màaa',
     mess: 'Em cảm ơn nhiềuuuuu',
     messDesc: 'Chị rep tin nhắn em nhé :<',
-    btnAccept: 'Okiiiii lun ❤',
+    btnAccept: 'Okiiiii lun <3',
     messLink: 'http://fb.com' //link mess của các bạn. VD: https://m.me/nam.nodemy
 }

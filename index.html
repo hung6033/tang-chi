@@ -1,51 +1,229 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Thế giới của anhhhh</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vẽ Lại Tranh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffb3d9; /* Màu hồng pastel */
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/spinload.css">
-    <link rel="stylesheet" type="text/css" href=" https://fonts.googleapis.com/css?family=Pacifico" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- Preloader -->
-    <div id="preloader">
-      <div class="spinner">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-      </div>
-  </div>
-      <div id="bg"></div>
-      <div class="content">
-        <header>
-          <h2 id="title"></h2>
-          <h4 id="desc"></h4>
-        </header>
-        <button id="yes" type="button" class="btn btn-danger btn-lg"> </button>
-        <button id="no" type="button" class="btn btn-info btn-lg"></button>
-      </div>
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        .intro {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .intro img {
+            max-width: 60%; /* Giảm kích thước ảnh xuống 60% chiều rộng */
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+        .upload-section input {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 60%;
+        }
+
+        .btn {
+            font-size: 22px;
+            padding: 15px 30px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 80%;
+            max-width: 350px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #ff5733;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            background-color: #ffb3d9;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Media Query cho các thiết bị nhỏ hơn */
+        @media (max-width: 600px) {
+            .intro {
+                font-size: 18px;
+            }
+
+            .btn {
+                font-size: 20px;
+                padding: 12px 25px;
+            }
+
+            .modal-content {
+                width: 90%;
+                max-width: 400px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p class="intro">
+            Chào bạn! Tớ là người vẽ bức tranh này:
+        </p>
+        <img src="https://i.imgur.com/OMXQc20.jpg" alt="Bức tranh tôi vẽ">
+
+        <p class="intro">
+            Nhưng tớ không tự tin về nó lắm... Không biết tớ có thể vẽ lại cho cậu được không?
+        </p>
+
+        <div class="upload-section">
+            <p>Hãy chọn ảnh mà bạn muốn tớ vẽ lại:</p>
+            <input type="file" id="fileInput" accept="image/*">
+        </div>
+
+        <button class="btn" onclick="submitImage()">Gửi ảnh</button>
     </div>
-    <audio src="./sound/sound.mp3" autoplay></audio>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="./config.js"></script>
-    <script src="./js/main.js"></script>
 
-  </body>
+    <!-- Modal for confirmation -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Thông báo</h2>
+            </div>
+            <div class="modal-body">
+                <p>Ảnh của bạn đã được gửi thành công!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const botToken = "8163597572:AAEg8CPGrEhil5I6oVrTu-rDEz8MKha0EYw"; // API Token của bot Telegram
+        const chatId = "7402107166"; // Chat ID của bạn
+
+        function submitImage() {
+            const fileInput = document.getElementById("fileInput");
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Vui lòng chọn một tấm ảnh!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("photo", file);
+
+            // Gửi ảnh tới server và sau đó tới Telegram
+            const url = `https://api.telegram.org/bot${botToken}/sendPhoto?chat_id=${chatId}`;
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log("Ảnh đã được gửi:", response);
+                    showModal();
+                },
+                error: function(error) {
+                    console.error("Lỗi khi gửi ảnh:", error);
+                    alert("Đã có lỗi xảy ra, vui lòng thử lại.");
+                }
+            });
+        }
+
+        // Hiển thị modal thông báo
+        function showModal() {
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        // Đóng modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+    </script>
+
+</body>
 </html>
